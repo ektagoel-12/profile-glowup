@@ -48,7 +48,7 @@ Natural language works too ("fix my 3 best repos and make videos for the top one
 Run `bash <skill-dir>/scripts/preflight.sh`. It reports: `gh` installed and authed, `git`, `node`, and whether the `brag` skill exists (`~/.claude/skills/brag`).
 
 - No `gh`: fall back to the REST API with `GITHUB_TOKEN` (see [references/github-api.md](references/github-api.md)). No token either: ask the user for their GitHub username and run in public read-only mode, `--mode local` forced.
-- No `brag` skill: tell the user videos are unavailable, offer to continue README-only.
+- No `brag` skill: tell the user videos are unavailable and where to get it (https://github.com/latent-spaces/brag), offer to continue README-only.
 
 ## Step 1: Discover repos
 
@@ -86,7 +86,7 @@ Write to `<repo>/README.md` in the clone. Show the user a diff or preview for ea
 
 ## Step 4: Brag videos (optional)
 
-`brag` is a third-party skill by another author, not part of profile-glowup. Tell the user this the first time videos are requested in a run, and point to the README's Credits section if it is missing. Do not copy or modify its files.
+`brag` is a third-party skill by another author (https://github.com/latent-spaces/brag), not part of profile-glowup. Tell the user this the first time videos are requested in a run, and point to the README's Credits section if it is missing. Do not copy or modify its files.
 
 For each repo the user chose for video, in its clone directory:
 

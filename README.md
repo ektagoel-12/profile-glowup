@@ -47,7 +47,7 @@ See `SKILL.md` for all options and `references/ideas.md` for planned add-ons.
 
 ## Credits and third-party dependencies
 
-The video feature uses **`brag`, a separate skill made by someone else**. It is not part of this repo and is not bundled. `profile-glowup` only calls it when you ask for videos. Install it from its original author's repository: <!-- TODO: add the brag repo URL here -->
+The video feature uses **`brag`, a separate skill made by someone else** ([latent-spaces/brag](https://github.com/latent-spaces/brag)). It is not part of this repo and is not bundled. `profile-glowup` only calls it when you ask for videos. Install it from its original repository: https://github.com/latent-spaces/brag
 
 `brag` is built on Hyperframes and ships its own assets (including music tracks) under its own terms. All credit for the video generation goes to its authors; check its license before sharing videos publicly.
 
