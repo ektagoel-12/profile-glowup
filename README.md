@@ -53,6 +53,10 @@ The video feature uses **`brag`, a separate skill made by someone else** ([laten
 
 Without `brag`, everything else in `profile-glowup` still works.
 
+## Author
+
+Ekta Goel ([@ektagoel-12](https://github.com/ektagoel-12))
+
 ## License
 
 MIT (applies to this repo only, not to `brag`)
