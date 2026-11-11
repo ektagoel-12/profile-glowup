@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{NAME}}</title>
+<meta name="description" content="{{TAGLINE}}">
+<style>
+:root{--bg:#fff;--fg:#14161a;--muted:#5b6370;--card:#f4f5f7;--accent:#4f46e5;--line:#e3e5e9}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--fg:#e8eaee;--muted:#9aa3b2;--card:#171a21;--accent:#8b8cff;--line:#262a33}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:960px;margin:0 auto;padding:0 16px 64px}
+header{padding:64px 0 32px}
+h1{font-size:clamp(2rem,6vw,3rem);margin:0 0 8px;line-height:1.1}
+.tag{font-size:1.2rem;color:var(--muted);margin:0 0 16px}
+.links a,.btns a{display:inline-block;margin:0 8px 8px 0;padding:6px 14px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.9rem}
+.links a:hover,.btns a:hover{border-color:var(--accent);color:var(--accent)}
+h2{font-size:1.3rem;margin:40px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column}
+.card img{width:100%;border-radius:8px;margin-bottom:12px;aspect-ratio:16/10;object-fit:cover}
+.card h3{margin:0 0 4px}.card p{margin:0 0 12px;color:var(--muted);flex:1}
+.stack{list-style:none;padding:0;margin:0 0 12px;display:flex;flex-wrap:wrap;gap:6px}
+.stack li{font-size:.75rem;padding:2px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>{{NAME}}</h1>
+<p class="tag">{{TAGLINE}}</p>
+<p>{{ABOUT}}</p>
+<div class="links">{{LINKS}}</div>
+</header>
+<h2>Projects</h2>
+<section class="grid">
+{{PROJECTS}}
+</section>
+</main>
+</body>
+</html>
