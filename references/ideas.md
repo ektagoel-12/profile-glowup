@@ -1,15 +1,14 @@
 # Feature ideas (not yet built)
 
-Shipped: audit-only, security, describe/topics, license, screenshots, video-hosting, pin-plan, portfolio-site, config. See SKILL.md.
+Shipped: audit-only, security, describe/topics, license, screenshots, pin-plan, portfolio-site, config. See SKILL.md.
 
 - `--audit-only`: score every repo, output a ranked fix list, change nothing.
 - `--templates <dir>`: user-supplied README templates and house style.
 - `--lang <code>`: README in another language, or bilingual.
 - `--architecture`: add a mermaid architecture diagram from detected structure.
 - `--screenshots`: boot the app, capture real screenshots with a headless browser, embed them.
-- `--demo-gif`: record a short run-through GIF instead of full video.
-- `--video-hosting release|youtube|none`: upload brag video as a release asset and link it in README.
-- `--social`: draft LinkedIn / X posts per project from brag `share-copy.txt`.
+- `--demo-gif`: record a short run-through GIF.
+- `--social`: draft LinkedIn / X posts per project.
 - `--topics` and `--describe`: auto-apply topics and repo descriptions (with confirm).
 - `--license <id>`: add a LICENSE file where missing.
 - `--community`: add CONTRIBUTING.md, CODE_OF_CONDUCT.md, issue and PR templates.
@@ -20,6 +19,5 @@ Shipped: audit-only, security, describe/topics, license, screenshots, video-host
 - `--resume`: export a project-highlights section for a resume / LinkedIn.
 - `--portfolio-site`: generate a GitHub Pages portfolio from analyzed repos.
 - `--recruiter-view`: score the profile as a recruiter would, with top 5 fixes.
-- `--batch-limit <n>` and `--cost-estimate`: cap videos, warn before long renders.
 - `--schedule`: re-run monthly, only touch repos with new activity.
-- `--config glowup.yml`: persist defaults (tone, mode, excludes, per-repo overrides).
+- `--config glowup.yml`: persist defaults (mode, excludes, per-repo overrides).

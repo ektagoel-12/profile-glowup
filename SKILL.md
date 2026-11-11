@@ -1,11 +1,11 @@
 ---
 name: profile-glowup
-description: Fix up a GitHub profile. Analyzes the user's repos, lets them pick which (or all), writes a README for each, opens PRs with them, and optionally makes a brag launch video per project via the brag skill. Use when someone says "/profile-glowup", "fix my github profile", "add READMEs to my repos", "polish my GitHub", or "make my projects look good".
+description: Fix up a GitHub profile. Analyzes the user's repos, lets them pick which (or all), writes a README for each, opens PRs with them. Use when someone says "/profile-glowup", "fix my github profile", "add READMEs to my repos", "polish my GitHub", or "make my projects look good".
 ---
 
 # /profile-glowup
 
-Turn a messy GitHub profile into a portfolio. Analyze repos, write READMEs, make brag videos, tidy the profile.
+Turn a messy GitHub profile into a portfolio. Analyze repos, write READMEs, tidy the profile.
 
 ## Options
 
@@ -13,8 +13,6 @@ Turn a messy GitHub profile into a portfolio. Analyze repos, write READMEs, make
 |---|---|---|
 | `--repos` | `all`, or comma list of repo names | ask user |
 | `--readme` | `on`, `off` | on |
-| `--video` | `none`, `all`, or comma list | ask user |
-| `--tone` | brag tone (`default`, `polished`, `chaotic`, ...) | `default` |
 | `--mode` | `pr` (open PR), `push` (commit to default branch), `local` (files only) | `pr` |
 | `--overwrite` | flag: replace existing READMEs | off (improve only if weak) |
 | `--profile-readme` | flag: also build `<user>/<user>` profile README | off |
@@ -25,14 +23,13 @@ Turn a messy GitHub profile into a portfolio. Analyze repos, write READMEs, make
 | `--describe` | flag: propose repo descriptions and topics, apply on confirm | off |
 | `--license` | SPDX id (`MIT`, `Apache-2.0`, ...) to add where missing | off |
 | `--screenshots` | flag: boot the app, capture real screenshots, embed in README | off |
-| `--video-hosting` | `release` (GitHub release asset), `none` | `none` |
 | `--pin-plan` | flag: recommend the 6 repos to pin | off |
 | `--portfolio-site` | flag: generate a GitHub Pages portfolio from analyzed repos | off |
 | `--config` | path to `glowup.yml` with saved defaults | `./glowup.yml` if present |
 
 Flags override `glowup.yml`, which overrides defaults. See [references/config.md](references/config.md).
 
-Natural language works too ("fix my 3 best repos and make videos for the top one").
+Natural language works too ("fix my 3 best repos").
 
 ## Safety rules (hard)
 
@@ -45,10 +42,9 @@ Natural language works too ("fix my 3 best repos and make videos for the top one
 
 ## Step 0: Preflight
 
-Run `bash <skill-dir>/scripts/preflight.sh`. It reports: `gh` installed and authed, `git`, `node`, and whether the `brag` skill exists (`~/.claude/skills/brag`).
+Run `bash <skill-dir>/scripts/preflight.sh`. It reports: `gh` installed and authed, `git`, and `node`.
 
 - No `gh`: fall back to the REST API with `GITHUB_TOKEN` (see [references/github-api.md](references/github-api.md)). No token either: ask the user for their GitHub username and run in public read-only mode, `--mode local` forced.
-- No `brag` skill: tell the user videos are unavailable and where to get it (https://github.com/latent-spaces/brag), offer to continue README-only.
 
 ## Step 1: Discover repos
 
@@ -58,7 +54,7 @@ Drop forks and archived repos by default. Show a numbered table with a health sc
 
 **`--audit-only`:** stop after this step plus the security scan. Output a ranked fix list (worst health and most recent activity first), a recruiter-view note (what a hiring manager sees in 30 seconds, top 5 fixes), and the `--pin-plan` if requested. Change nothing.
 
-Ask the user: which repos? (`all`, numbers, or names). Also ask whether to make brag videos, and for which.
+Ask the user: which repos? (`all`, numbers, or names).
 
 ## Step 2: Analyze each chosen repo
 
@@ -82,26 +78,11 @@ Rules:
 
 With `--screenshots`: follow [references/screenshots.md](references/screenshots.md) to boot the app and capture real images into `docs/screenshots/`. Embed only images that were actually captured. If the app cannot boot (missing keys, mobile app, needs DB), skip and say why. Never fake or mock a screenshot.
 
-Write to `<repo>/README.md` in the clone. Show the user a diff or preview for each repo before step 5.
+Write to `<repo>/README.md` in the clone. Show the user a diff or preview for each repo before step 4.
 
-## Step 4: Brag videos (optional)
+## Step 4: Apply
 
-`brag` is a third-party skill by another author (https://github.com/latent-spaces/brag), not part of profile-glowup. Tell the user this the first time videos are requested in a run, and point to the README's Credits section if it is missing. Do not copy or modify its files.
-
-For each repo the user chose for video, in its clone directory:
-
-1. Invoke the `brag` skill via the Skill tool with args `--tone <tone>` plus any user direction. brag reads the project code in the current directory, so work from the clone.
-2. Output lands in `brag-output/` inside the clone. Keep it out of git: add `brag-output/` to the clone's local `.git/info/exclude`.
-3. Collect `brag.mp4`, `brag.jpg`, `share-copy.txt`.
-4. Copy results to `<workdir>/_videos/<repo>/`.
-
-Run videos one at a time (rendering is heavy). If a render fails, report it and continue with the next repo.
-
-Do not commit mp4 to the repo. With `--video-hosting release`: after the user confirms, `gh release create` (or upload to an existing release) with `brag.mp4`, then add the poster image linked to the video URL in the README (in the same PR). With `none`: hand files to the user and give the poster path in the report.
-
-## Step 5: Apply
-
-Show the plan: repo → README action, topics/description suggestions, video yes/no, mode. Wait for explicit yes.
+Show the plan: repo → README action, topics/description suggestions, mode. Wait for explicit yes.
 
 - `pr` mode: branch `docs/profile-glowup-readme`, commit, push, `gh pr create --head docs/profile-glowup-readme`. Before committing, set a repo-local git identity if none is configured: name = GitHub login, email = `<id>+<login>@users.noreply.github.com` (from `gh api user`). Never let git fall back to the machine hostname email. PR body: what changed and why, no marketing fluff.
 - `push` mode: commit to default branch.
@@ -113,22 +94,22 @@ Show the plan: repo → README action, topics/description suggestions, video yes
 
 Commit message: `docs: add README`. Follow the user's attribution rules for commits.
 
-## Step 5b: Pin plan (`--pin-plan`)
+## Step 4b: Pin plan (`--pin-plan`)
 
 Rank repos by: has a real README, recent activity, substance (size and structure), polish, variety of stack. Recommend 6, one line of reasoning each, and note which need work first. GitHub has no API for pins, so the user pins manually.
 
-## Step 5c: Portfolio site (`--portfolio-site`)
+## Step 4c: Portfolio site (`--portfolio-site`)
 
 Follow [references/portfolio-site.md](references/portfolio-site.md). Builds a static GitHub Pages site from the analyzed repos with `scripts/build-portfolio.py`. Output goes to a `<user>.github.io` repo (or `docs/` of the profile repo) via the same mode (pr/push/local). Default `local` preview first.
 
-## Step 6: Profile README (only with `--profile-readme`)
+## Step 5: Profile README (only with `--profile-readme`)
 
-Build `<user>/<user>/README.md` from [references/profile-readme.md](references/profile-readme.md): short intro, pinned-project highlights with videos/posters, stack list. Use the same pr/push/local mode. Suggest which 6 repos to pin (GitHub pins cannot be set via API; tell user to pin manually).
+Build `<user>/<user>/README.md` from [references/profile-readme.md](references/profile-readme.md): short intro, pinned-project highlights with screenshots, stack list. Use the same pr/push/local mode. Suggest which 6 repos to pin (GitHub pins cannot be set via API; tell user to pin manually).
 
-## Step 7: Report
+## Step 6: Report
 
-Print a table: repo | README | PR link | video path | suggested topics. List anything skipped and why. End with next-step suggestions from [references/ideas.md](references/ideas.md) only if the user asks.
+Print a table: repo | README | PR link | suggested topics. List anything skipped and why. End with next-step suggestions from [references/ideas.md](references/ideas.md) only if the user asks.
 
 ## Done criteria
 
-Every chosen repo has a README written (or consciously skipped), every requested video rendered or reported failed, nothing pushed without confirmation.
+Every chosen repo has a README written (or consciously skipped), nothing pushed without confirmation.

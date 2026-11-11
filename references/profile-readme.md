@@ -3,7 +3,7 @@
 Layout:
 1. One-line headline: who you are, what you build.
 2. Two-line about: current focus, what you want to be contacted about.
-3. Featured projects: 3-6 items. Each: name, one line, link, poster image or video link.
+3. Featured projects: 3-6 items. Each: name, one line, link, screenshot.
 4. Stack: plain list grouped by area.
 5. Contact: only links the user approves.
 

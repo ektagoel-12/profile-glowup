@@ -25,4 +25,4 @@ Static one-page site, no build tooling, hosted on GitHub Pages.
   ]
 }
 ```
-`demo`, `image`, `video` are optional. Images must be real captures or poster frames. Page text is HTML-escaped by the builder.
+`demo`, `image`, `video` are optional. Images must be real captures. Page text is HTML-escaped by the builder.

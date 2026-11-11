@@ -1,7 +1,7 @@
 # README rules
 
 1. Pitch first: one sentence, what and for whom.
-2. Show it: screenshot, GIF, or video poster near the top if one exists.
+2. Show it: screenshot or GIF near the top if one exists.
 3. Features: 3-6 bullets taken from real code.
 4. Quick start: exact commands, verified against manifests.
 5. Config: env var names with one-line meaning.
