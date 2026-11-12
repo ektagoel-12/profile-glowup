@@ -20,6 +20,7 @@ A Claude Code skill that fixes your GitHub profile: analyzes your repos, writes 
 | `--screenshots` | Real screenshots in the README, captured by booting the app |
 | `--pin-plan` | Recommends which 6 repos to pin |
 | `--portfolio-site` | Generates a GitHub Pages portfolio from your repos |
+| `--verify static\|install\|run` | Checks README claims; asks you first before executing any repo commands |
 | `--config glowup.yml` | Saves defaults and per-repo overrides |
 
 Safe by default: PR mode, no overwrites, nothing pushed without your yes.

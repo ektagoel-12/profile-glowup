@@ -5,7 +5,8 @@ Optional file in the working directory. Flags override it.
 ```yaml
 mode: pr                 # pr | push | local
 exclude: [dotfiles, Extra, 20803007]   # repos to never touch
-security: scan           # off | scan
+security: scan
+verify: static           # static | install | run (omit to be asked)           # off | scan
 license: MIT             # SPDX id, omit to skip
 describe: true
 screenshots: false

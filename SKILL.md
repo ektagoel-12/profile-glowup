@@ -25,6 +25,7 @@ Turn a messy GitHub profile into a portfolio. Analyze repos, write READMEs, tidy
 | `--screenshots` | flag: boot the app, capture real screenshots, embed in README | off |
 | `--pin-plan` | flag: recommend the 6 repos to pin | off |
 | `--portfolio-site` | flag: generate a GitHub Pages portfolio from analyzed repos | off |
+| `--verify` | `static`, `install`, `run` (see below); asked each run if not set | ask user |
 | `--config` | path to `glowup.yml` with saved defaults | `./glowup.yml` if present |
 
 Flags override `glowup.yml`, which overrides defaults. See [references/config.md](references/config.md).
@@ -66,6 +67,10 @@ Unless `--security off`, run `bash <skill-dir>/scripts/security-scan.sh <clone>`
 
 Record unknowns as unknowns. Ask the user only for facts code cannot give (live demo URL, project motivation).
 
+## Step 2b: Verify setup (ask the user)
+
+Before writing READMEs, ask the user whether running commands from the READMEs is wanted, using the question in [references/verify.md](references/verify.md). Running means executing repo code, so it is the user's choice every run. Default and fallback: `static` (no execution).
+
 ## Step 3: Write READMEs
 
 Follow [references/readme-guide.md](references/readme-guide.md) and the templates in [references/readme-template.md](references/readme-template.md). Pick template by project type (web app, CLI, library, data/ML, other).
@@ -79,6 +84,8 @@ Rules:
 With `--screenshots`: follow [references/screenshots.md](references/screenshots.md) to boot the app and capture real images into `docs/screenshots/`. Embed only images that were actually captured. If the app cannot boot (missing keys, mobile app, needs DB), skip and say why. Never fake or mock a screenshot.
 
 Write to `<repo>/README.md` in the clone. Show the user a diff or preview for each repo before step 4.
+
+After writing, run the checks for the chosen `--verify` level from [references/verify.md](references/verify.md). Fix README errors found, or report them. Put the verify table in each PR body.
 
 ## Step 4: Apply
 
