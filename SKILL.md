@@ -79,7 +79,7 @@ Rules:
 - Lead with one-line pitch, then what it does and how to run it.
 - Commands must be copied from real scripts (`package.json`, `Makefile`, `pyproject.toml`). Verify they exist.
 - Badges only for things that are true (license file present, CI workflow present).
-- Existing README: keep author voice and unique content, restructure and fill gaps.
+- Existing README: keep author voice and unique content, restructure and fill gaps. When it conflicts with the current code, code wins for facts (commands, stack, features, config). Keep the old text for intent, story and credits. Never drop a conflicting claim silently: list each conflict (old claim, what the code shows, what was done) in the PR body, and ask the user when the code is ambiguous (feature half-built, renamed, or removed).
 
 With `--screenshots`: follow [references/screenshots.md](references/screenshots.md) to boot the app and capture real images into `docs/screenshots/`. Embed only images that were actually captured. If the app cannot boot (missing keys, mobile app, needs DB), skip and say why. Never fake or mock a screenshot.
 

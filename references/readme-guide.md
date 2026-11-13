@@ -14,3 +14,14 @@
 Existing README: preserve author content, voice, links, credits. Restructure and fill gaps. Show diff.
 
 If something is unknown (demo URL, motivation), leave a clearly marked `<!-- TODO -->` or ask the user once for all repos together.
+
+## Conflicts between an old README and current code
+
+| Kind of claim | Winner | Action |
+|---|---|---|
+| Commands, ports, env vars, stack, dependencies | Code and config | Rewrite to match. Note the change in the PR body. |
+| Features | Code and tests | Remove or mark as planned if nothing in code backs it. List it in the PR body. |
+| Purpose, motivation, story, credits, links | Old README | Keep as written by the author. |
+| Ambiguous (half-built, renamed, deleted) | User | Ask. Until answered, keep the old text with a `<!-- TODO: verify -->` comment. |
+
+Check git history before deleting a claim: it may have been removed on purpose, or the code may simply be behind the docs.
