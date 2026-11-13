@@ -2,6 +2,11 @@
 
 A Claude Code skill that fixes your GitHub profile: analyzes your repos, writes READMEs, and builds a portfolio site.
 
+
+
+https://github.com/user-attachments/assets/ffe0c006-fe07-42b7-a6bb-7540b4812f22
+
+
 ## What it does
 
 1. Lists your repos and scores their health.
